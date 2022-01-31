@@ -14,19 +14,24 @@ import {
   EditButton,
   DeleteButton,
   RichTextField,
-  SelectInput,
-  FileField,
-  FileInput
+  ListProps,
+  ShowProps,
+  CreateProps,
+  EditProps,
+  ImageInput,
+  ImageField,
 } from "react-admin";
 import RichTextInput from "ra-input-rich-text";
 
 const PostFilter = (props: any) => {
-  return (<Filter {...props}>
-    <TextInput label="Search" source="title" alwaysOn />
-  </Filter>);
+  return (
+    <Filter {...props}>
+      <TextInput label="Search" source="title" alwaysOn />
+    </Filter>
+  );
 };
 
-export const PostList = (props: any) => (
+export const PostList = (props: ListProps) => (
   <List {...props} filters={<PostFilter />}>
     <Datagrid>
       <TextField source="title" />
@@ -38,45 +43,37 @@ export const PostList = (props: any) => (
   </List>
 );
 
-export const PostShow = (props: any) => (
+export const PostShow = (props: ShowProps) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
       <TextField source="title" />
       <RichTextField source="body" />
-      <FileField source="file.src" title="file.title" />
+      <ImageField source="pictures" src="src" title="title" />
     </SimpleShowLayout>
   </Show>
 );
 
-export const PostCreate = (props: any) => (
+export const PostCreate = (props: CreateProps) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="title" />
       <RichTextInput source="body" />
-      <FileInput source="file" label="File" accept="application/pdf">
-        <FileField source="src" title="title" />
-      </FileInput>
+      <ImageInput source="pictures" label="Images" multiple={true}>
+        <ImageField source="src" title="title" />
+      </ImageInput>
     </SimpleForm>
   </Create>
 );
 
-export const PostEdit = (props: any) => (
+export const PostEdit = (props: EditProps) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="title" />
       <RichTextInput source="body" />
-      <SelectInput
-        source="rating"
-        choices={[
-          { id: 1, name: "Good" },
-          { id: 2, name: "Okay" },
-          { id: 3, name: "Bad" }
-        ]}
-      />
-      <FileInput source="file" label="File" accept="application/pdf">
-        <FileField source="src" title="title" />
-      </FileInput>
+      <ImageInput source="pictures" label="Images" multiple={true}>
+        <ImageField source="src" title="title" />
+      </ImageInput>
     </SimpleForm>
   </Edit>
 );
