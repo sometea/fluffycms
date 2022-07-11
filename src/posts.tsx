@@ -21,7 +21,7 @@ import {
   ImageInput,
   ImageField,
 } from "react-admin";
-import RichTextInput from "ra-input-rich-text";
+import { RichTextInput } from "ra-input-rich-text";
 
 const PostFilter = (props: any) => {
   return (
