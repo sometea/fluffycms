@@ -35,7 +35,6 @@ export const PostList = (props: ListProps) => (
   <List {...props} filters={<PostFilter />}>
     <Datagrid>
       <TextField source="title" />
-      <RichTextField source="body" />
       <ShowButton label="" />
       <EditButton label="" />
       <DeleteButton label="" />
