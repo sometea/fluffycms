@@ -1,7 +1,7 @@
 import express from "express";
 import { config } from "./apiConfig";
 
-export function getApiApp(firestore: FirebaseFirestore.Firestore) {
+export function getApiApp(firestore: FirebaseFirestore.Firestore): ReturnType<typeof express> {
   const apiApp = express();
   const collection = firestore.collection('root_collection/fluffy/posts');
 
@@ -19,9 +19,8 @@ export function getApiApp(firestore: FirebaseFirestore.Firestore) {
       .map(post => ({
         id: post.id,
         title: post.title,
-    }));
+      }));
     res.send({
-      message: 'hello',
       documents: mappedPosts,
     });
   });
