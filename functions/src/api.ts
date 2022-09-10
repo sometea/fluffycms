@@ -1,8 +1,16 @@
 import express from "express";
+import { config } from "./apiConfig";
 
 export function getApiApp(firestore: FirebaseFirestore.Firestore) {
   const apiApp = express();
   const collection = firestore.collection('root_collection/fluffy/posts');
+
+  apiApp.use((req, res, next) => {
+    if (req.headers['authorization'] === `Bearer ${config.apiKey}`) {
+      return next();
+    }
+    return res.status(401).send();
+  });
 
   apiApp.get('/', async (req, res) => {
     const posts = await collection.get();
