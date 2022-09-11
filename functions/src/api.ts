@@ -19,6 +19,9 @@ export function getApiApp(firestore: FirebaseFirestore.Firestore): ReturnType<ty
       .map(post => ({
         id: post.id,
         title: post.title,
+        teaser: post.teaser || '',
+        date: (post.lastupdate?.['_seconds'] || 0) * 1000,
+        image: (post.pictures?.length || 0) > 0 ? post.pictures[0].src : '',
       }));
     res.send({
       documents: mappedPosts,

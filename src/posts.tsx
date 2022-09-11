@@ -47,6 +47,7 @@ export const PostShow = (props: ShowProps) => (
     <SimpleShowLayout>
       <TextField source="id" />
       <TextField source="title" />
+      <TextField source="teaser" />
       <RichTextField source="body" />
       <ImageField source="pictures" src="src" title="title" />
     </SimpleShowLayout>
@@ -57,6 +58,7 @@ export const PostCreate = (props: CreateProps) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="title" />
+      <TextInput source="teaser" />
       <RichTextInput source="body" />
       <ImageInput source="pictures" label="Images" multiple={true}>
         <ImageField source="src" title="title" />
@@ -69,6 +71,7 @@ export const PostEdit = (props: EditProps) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="title" />
+      <TextInput source="teaser" />
       <RichTextInput source="body" />
       <ImageInput source="pictures" label="Images" multiple={true}>
         <ImageField source="src" title="title" />
