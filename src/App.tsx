@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 
+import slugify from "slugify";
+
 import { Admin, Resource } from "react-admin";
 import {
   FirebaseDataProvider,
@@ -15,6 +17,15 @@ import { WebhookCreate, WebhookEdit, WebhookList, WebhookShow } from "./webhooks
 const options: RAFirebaseOptions = {
   logging: true,
   rootRef: "root_collection/fluffy",
+  transformToDb(resourceName, documentData, documentId) {
+    if (documentData.title) {
+      documentData.slug = slugify(documentData.title, { lower: true });
+    }
+    if (typeof documentData.pictures === 'undefined') {
+      documentData.pictures = [];
+    }
+    return documentData;
+  },
 };
 
 const dataProvider = FirebaseDataProvider(firebaseConfig, options);

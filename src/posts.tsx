@@ -46,6 +46,7 @@ export const PostShow = (props: ShowProps) => (
   <Show {...props}>
     <SimpleShowLayout>
       <TextField source="id" />
+      <TextField source="slug" />
       <TextField source="title" />
       <TextField source="teaser" />
       <RichTextField source="body" />
