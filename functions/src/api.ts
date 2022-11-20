@@ -20,7 +20,7 @@ export function getApiApp(firestore: FirebaseFirestore.Firestore): ReturnType<ty
       teaser: dbPost.teaser || '',
       date: (dbPost.lastupdate?.['_seconds'] || 0) * 1000,
       image: (dbPost.pictures?.length || 0) > 0 ? dbPost.pictures[0].src : '',
-    }
+    };
   }
 
   apiApp.get('/', async (req, res) => {
